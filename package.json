@@ -1,0 +1,24 @@
+{
+  "name": "musicshare",
+  "version": "1.0.0",
+  "description": "music share\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C list share",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyingrx/MusicListShare.git"
+  },
+  "keywords": [
+    "网易云音乐",
+    "QQ音乐",
+    "歌单共享"
+  ],
+  "author": "rx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flyingrx/MusicListShare/issues"
+  },
+  "homepage": "https://github.com/flyingrx/MusicListShare#readme"
+}
