@@ -30,7 +30,7 @@ const myMethod={
                 return;
             }
             res.setEncoding('utf8')
-            res.on('data',function (chunk) {
+            res.on('data',function (chunk) {})
 
         })
     }
