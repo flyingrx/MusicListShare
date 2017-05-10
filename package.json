@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/flyingrx/MusicListShare/issues"
   },
-  "homepage": "https://github.com/flyingrx/MusicListShare#readme"
+  "homepage": "https://github.com/flyingrx/MusicListShare#readme",
+  "dependencies": {
+    "big-integer": "^1.6.22"
+  }
 }

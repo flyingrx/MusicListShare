@@ -3,9 +3,11 @@
  */
 
 const http = require('http')
+const crypto = require('./crypto.js')
 let wy_res = ''
 const myMethod={
-    createHttp:function (hostname,path,method,cookie,callback) {
+    createHttp:function (hostname,path,method,data,cookie,callback) {
+        const cryptoreq = Encrypt(data)
         let http_client = http.request({
             hostname:hostname,
             path:path,
@@ -30,8 +32,25 @@ const myMethod={
                 return;
             }
             res.setEncoding('utf8')
-            res.on('data',function (chunk) {})
+            res.on('data',function (chunk) {
+                wy_res += chunk;
+            })
+            res.on('end',function () {
+                if (wy_res==''){
+                    console.log('none')
+                    return
+                }
+                if(res.headers['set-cookie']){
+                    callback(wy_res,res.headers['set-cookie']);
+                }else{
+                    callback(wy_res);
+                }
+
+            })
 
         })
+        http_client.write('params='+cryptoreq.params+'&encSecKey='+cryptoreq.encSecKey)
+        http_client.end()
     }
 }
+module.exports=myMethod
