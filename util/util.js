@@ -3,7 +3,7 @@
  */
 
 const http = require('http')
-const crypto = require('./crypto.js')
+const Encrypt = require('./crypto.js')
 let wy_res = ''
 const myMethod={
     createHttp:function (hostname,path,method,data,cookie,callback) {
@@ -24,15 +24,18 @@ const myMethod={
 
             }
         },function (res) {
+            console.log(res)
             res.on('error',function (err) {
                 console.log(err);
             })
-            if (res.status!=200){
-                console.log('status!=200')
+            if (res.statusCode!=200){
+                console.log(res.statusCode);
+                console.log(res.error)
                 return;
             }
             res.setEncoding('utf8')
             res.on('data',function (chunk) {
+                console.log(chunk)
                 wy_res += chunk;
             })
             res.on('end',function () {
