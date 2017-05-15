@@ -15,16 +15,27 @@ let password = '89128217'
 let md5num = crypto.createHash('md5')
 md5num.update(password);
 let data = {
-    'params':phone,
-    'encSecKey':md5num.digest('hex'),
+    'phone':phone,
+    'password':md5num.digest('hex'),
     'rememberLogin':'true'
 }
 myMethod.createHttp(
     'music.163.com',
-    'weapi/login/cellphone',
+    '/weapi/login/cellphone',
     'POST',
     data,
     cookie,
-    (res)=>{userInfo.id=res.id;userInfo.cookie=res.cookie}
+    (res,cooki)=>{userInfo.id=res.account.id;userInfo.cookie=cooki;console.log(userInfo)}
 )
-console.log(userInfo)
+cookie = userInfo.cooki
+let playlist = '';
+myMethod.createHttp(
+    'music.163.com',
+    '/weapi/user/playlist',
+    'POST',
+    data,
+    cookie,
+    (res,cooki)=>{
+        playlist = res.
+}
+)

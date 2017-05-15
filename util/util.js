@@ -24,23 +24,20 @@ const myMethod={
 
             }
         },function (res) {
-            console.log(res)
             res.on('error',function (err) {
                 console.log(err);
             })
             if (res.statusCode!=200){
-                console.log(res.statusCode);
-                console.log(res.error)
                 return;
             }
-            res.setEncoding('utf8')
+           res.setEncoding('utf8')
+
             res.on('data',function (chunk) {
-                console.log(chunk)
-                wy_res += chunk;
+              wy_res += chunk;
             })
             res.on('end',function () {
                 if (wy_res==''){
-                    console.log('none')
+                    myMethod.createHttp(hostname,path,method,data,cookie,callback)
                     return
                 }
                 if(res.headers['set-cookie']){
