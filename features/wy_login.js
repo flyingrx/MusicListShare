@@ -25,17 +25,39 @@ myMethod.createHttp(
     'POST',
     data,
     cookie,
-    (res,cooki)=>{userInfo.id=res.account.id;userInfo.cookie=cooki;console.log(userInfo)}
-)
-cookie = userInfo.cooki
-let playlist = '';
-myMethod.createHttp(
-    'music.163.com',
-    '/weapi/user/playlist',
-    'POST',
-    data,
-    cookie,
     (res,cooki)=>{
-        playlist = res.
-}
+        if(res.indexOf('高频')){
+            console.log('访问过于频繁');
+            return;
+        }
+        var dm = JSON.parse(res)
+        userInfo.id=dm.account.id
+        cookie=cooki
+        // console.log('usr:',userInfo)
+        data = {
+            'id':userInfo.id,
+            'offset':'0',
+            'total':'true',
+            "limit":"1000",
+            "n":"1000",
+            "csrf_token":""
+        }
+        let playlist;
+        myMethod.createHttp(
+            'music.163.com',
+            '/weapi/v3/playlist/detail',
+            'POST',
+            data,
+            cookie,
+            (res,cooki)=>{
+            dm = JSON.parse(res);
+            playlist = res.playlist.tracks;
+            console.log(playlist);
+            }
+        )
+    }
 )
+
+
+
+
